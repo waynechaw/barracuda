@@ -1,0 +1,69 @@
+<a href="#/product"><div class="tab selected">Select Products</div></a>
+<a href="#/billing"><div class="tab billTab">Contact & Billing</div></a>
+
+<hr>
+
+<div class="selection">
+  <table>
+
+    <tr ng-repeat="row in formEntries">
+      <td>
+        <div class="number"> {{$index + 1}} </div>
+      </td>
+
+      <td class="product">
+        <h2>Select Your Product</h2>
+        <label for="product">Product</label>
+        <select name="product" id="product" ng-change="updateDeploy($index)" ng-model="formEntries[$index].product">
+          <option>(select)</option> 
+          <option ng-repeat="product in products" value = {{product.product_id}} >
+           {{product.product_name}}
+          </option>
+        </select>
+
+        <label for="deployment" ng-class="{'disabled': formEntries[$index].product == '(select)'}">Deployment Option</label>
+        <select name="deployment" id="deployment" ng-change="updateModel($index)" ng-model="formEntries[$index].deployment" ng-disabled="formEntries[$index].product == '(select)'">
+          <option>(select)</option> 
+          <option ng-repeat="option in deploymentOptions[$index]" value = {{option.deployment_id}} >
+           {{option.deployment_name}}
+          </option>
+        </select>
+
+        <label for="model" ng-class="{'disabled': formEntries[$index].deployment == '(select)'}">Model</label>
+        <select name="model" id="model" ng-model="formEntries[$index].model" ng-change="updatePrice($index)" ng-disabled="formEntries[$index].deployment == '(select)'">
+          <option>(select)</option>
+          <option ng-repeat="option in modelOptions[$index]" value = {{option.model_id}} >
+           {{option.model_name}}
+          </option> 
+        </select>
+      </td>
+      <td class="quantity">
+        <h2>Quantity</h2>
+        <input type="number" min="1" ng-model="row.quantity" ng-change="updatePrice($index)">
+      </td>
+      <td class="price">
+        <h2>Price</h2>
+        {{formEntries[$index].price | currency}}
+      </td>
+      <td class="price">
+        <button class="delete" ng-if="formEntries.length > 1" ng-click="delete($index)">Delete</button>
+      </td>
+    </tr>
+
+
+  </table>
+
+<a href="javascript:void(0);">
+  <div class="add" ng-click="addRow()">
+    <div class="plus">+</div>Add Another Product
+  </div>
+</a>
+
+<hr>
+
+<div class="total">
+  <p class="amount">Order Total:  {{total | currency}}</p>
+  <a href="#/billing"><button class="next" ng-click="updatePage('billing')">Next Step: Contact & Billing -> </button></a>
+</div>
+
+</div>

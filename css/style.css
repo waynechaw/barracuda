@@ -1,0 +1,202 @@
+
+header{
+	background: linear-gradient(#5F5F5F, black);
+	padding: 8px;
+}
+
+nav{
+  width: 70%;
+	margin: 0 auto;
+	height: 20px;
+	padding-top:30px;
+	min-width: 1000px;
+}
+
+li{
+	display: block;
+	float:right;
+	color:#808080;
+	margin-left: 15px;
+}
+
+.focus{
+	color:white;
+}
+
+ul{
+	margin:0;
+	position:relative;
+}
+
+.logo{
+	float:left;
+	width: 185px;
+	height: 45px;
+	position: absolute;
+	top: -25px;
+  background: url('../assets/logo.png') no-repeat;
+}
+
+.clear { clear: both }
+
+.container{
+	margin: 30px auto;
+	width: 50%;
+}
+
+h1{
+	color: #4098d7;
+	font-weight: 100;
+}
+
+.tab{
+  margin: 35px 0;
+  width: 195px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  font-size: .95em;
+  display: inline-block;
+  background: url('../assets/tab2.png') no-repeat;
+}
+
+.selected{
+  background: url('../assets/tab1.png') no-repeat;
+}
+
+.billTab{
+  position:relative;
+  left: -10px;
+}
+
+hr{
+  border-top: 1px solid #8c8b8b;
+}
+
+h2{
+  font-size: .9em;
+  margin-top: 5px;
+}
+
+.row{
+  display: inline-block;
+}
+
+.number{
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 50%;
+  background-color:#ADADAD;
+  color:white;
+  text-align: center;
+   display: inline-block;
+}
+
+tr:first-child td {
+    padding-top: 0px;
+}
+
+td{
+  padding-right: 1.2em;
+  vertical-align: top;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+tr{
+  border-bottom: 1px dashed gray;
+}
+
+.selection{
+  padding: 15px 5px;
+}
+
+label{
+  font-size: .7em;
+}
+
+select{
+  display: block;
+  width: 80%;
+}
+
+.product{
+  width: 60%;
+}
+
+.price{
+  width: 25%;
+  text-align: center;
+}
+
+.quantity{
+  width: 20%;
+    text-align: center;
+}
+  
+.delete{
+  margin-top: 2.3em;
+  border: none;
+  padding: 6px 15px;
+  background-color: #AD0000;
+  color:white;
+}
+
+.plus{
+  display:inline-block;
+  border: 1px solid #4098d7;
+  border-radius: 50%;
+  width: 20px;
+  height:20px;
+  text-align: center;
+  margin: 0px 10px;
+}
+
+.add{
+  color: #4098d7;
+  margin:15px 0;
+}
+
+.total{
+  padding:20px;
+  text-align: right;
+}
+
+.amount{
+  padding-bottom: 30px;
+  font-weight: 900;
+}
+
+.next{
+  margin-top: 2.3em;
+  border: none;
+  padding: 6px 15px;
+  background-color: #006086;
+  color:white;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:visited, a:link{
+  color:black;
+}
+
+input[type='number'] {
+  width:35px;
+  text-align: center;
+}
+
+select[disabled] {
+  color: #CCC;
+}
+
+.disabled{
+  color: #CCC;
+}
+
+html {
+  overflow-y: scroll;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Barracuda Networks Test Project</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li class="logo"></li>
+				<li>PRODUCTS</li>
+				<li>SOLUTIONS</li>
+				<li class="focus">PURCHASE</li>
+				<li>DOWNLOADS</li>
+				<li>SUPPORT</li>
+				<li>PARTNERS</li>
+				<li>COMPANY</li>
+				<div class="clear"></div>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="container" ng-app="purchase">
+		<h1>Purchase Online</h1>
+		<p>
+			You are one step away from solving your I.T. problems with the industry's easiest and most comprehensive security solutions.
+			Just select the desired products, deployment options, and models. Virtual and cloud products are available immediately, and appliances will
+			be shipped within two (2) business days. All products come with Barracuda's no-questions-asked 30-day money back gurantee.
+		</p>
+
+
+
+    <div ng-view></div>
+
+
+	</div>
+
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app/data_factory/data_factory.js"></script>
+  <script src="app/product/productController.js"></script>
+  <script src="app/billing/billingController.js"></script>
+  <script src="app/app.js"></script>
+</body>
+</html>
