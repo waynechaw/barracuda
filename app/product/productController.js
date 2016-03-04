@@ -7,16 +7,9 @@ angular.module('product', ['dataFactory'])
   var products;
   var deploymentMethods;
 
-  var deployMethodsFlat;
-
   productData.getData().then(function(response){
     products = response.data.products;
     deploymentMethods = response.data.deployment_methods;
-
-    deployMethodsFlat = _.map(response.data.deployment_methods, function(method){
-      return method.deployment_name;
-    }
-
     $scope.products = response.data.products;
   })
 
