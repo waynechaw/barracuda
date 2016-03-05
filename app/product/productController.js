@@ -1,50 +1,35 @@
-angular.module('product', ['dataFactory'])
+angular.module('product', [])
 
-.controller('productController', function ($scope, productData) {
-
-  $scope.total = 0;
-
-  var products;
-  var deploymentMethods;
-
-  var deployMethodsFlat;
-
-  productData.getData().then(function(response){
-    products = response.data.products;
-    deploymentMethods = response.data.deployment_methods;
-
-    deployMethodsFlat = _.map(response.data.deployment_methods, function(method){
-      return method.deployment_name;
-    }
-
-    $scope.products = response.data.products;
+.controller('productController', function ($scope, productData, formData) {
+  //retrieve product information
+  productData.getModels().then(function(data){
+    $scope.models = data;
+  })
+  productData.getProducts().then(function(data){
+    $scope.productNames = data;
+  })
+  productData.getDeploymentMethods().then(function(data){
+    $scope.deployMethods = data;
   })
 
-  $scope.formEntries = [];
+  $scope.formEntries = formData.getFormData; //get stored form data from factory
 
-  $scope.deploymentOptions = [];
-
-  $scope.modelOptions = [];
-
-  $scope.addRow = function(){
-
-    if ($scope.formEntries.length === 0 ){
-      $scope.formEntries.push({
-        product: "(select)",
-        deployment: "(select)",
-        model: "(select)",
-        quantity: 1,
-        price: null
-      });
-      return;
-    }
-
-
-    var valid = !_.some($scope.formEntries, function(entry){
+  $scope.formValid = function(){
+    return !_.some($scope.formEntries, function(entry){ //check if form is valid
       return entry.price === null || entry.price === 0 ;
     });
+  }
 
-    if (valid){
+  $scope.optionSelected = function(option){ //check if user selected an option
+    if (option === "(select)"){
+      return false;
+    }
+    return true;
+  }
+
+  $scope.addRow = function(init){ //add form entry
+    var valid = $scope.formValid();
+    if (init || valid){
       $scope.formEntries.push({
         product: "(select)",
         deployment: "(select)",
@@ -55,74 +40,12 @@ angular.module('product', ['dataFactory'])
     }
   }
 
-  $scope.addRow();
-
-  $scope.updateDeploy = function(index){
-
-    $scope.formEntries[index].deployment = "(select)";
-    $scope.formEntries[index].model = "(select)";
-    $scope.formEntries[index].price = null;
-    calculateTotal();    
-
-    if ("(select)" === $scope.formEntries[index].product){
-      return;
-    }
-
-    $scope.deploymentOptions[index] = [];
-
-    var productID = parseInt($scope.formEntries[index].product);
-    var selectedProduct = _.where(products, {product_id: productID})[0];
-    var deploymentOptions = _.uniq(_.pluck(selectedProduct.product_models, "deployment_id"));
-
-    _.each(deploymentOptions, function(option){
-      var deploymentInfo = _.where(deploymentMethods, {deployment_id: option})[0];
-      $scope.deploymentOptions[index].push(deploymentInfo)
-    })
-  }
-
-  $scope.updateModel = function(index){
-    $scope.formEntries[index].model = "(select)";
-    $scope.formEntries[index].price = null;
-
+  $scope.delete = function(index){ //delete form entry
+    $scope.formEntries.splice(index, 1);
     calculateTotal();
-
-    if ("(select)" === $scope.formEntries[index].deployment){
-      return;
-    }
-
-    $scope.modelOptions[index] = [];
-
-    var productID = parseInt($scope.formEntries[index].product);
-    var deploymentID = parseInt($scope.formEntries[index].deployment);
-    var allModels = _.where(products, {product_id: productID})[0].product_models;
-    var selectedProductModels = _.filter(allModels, function(model){
-      return model.deployment_id === deploymentID;
-    });
-
-    _.each(selectedProductModels, function(option){
-      $scope.modelOptions[index].push(option);
-    })
-
-
-
   }
 
-  $scope.updatePrice = function(index){
-
-    if ("(select)" === $scope.formEntries[index].model){
-      $scope.formEntries[index].price = null;
-      calculateTotal();
-      return;
-    }
-
-    var model_id = parseInt($scope.formEntries[index].model);
-    var price = (_.where($scope.modelOptions[index], {model_id: model_id})[0].model_price);
-    $scope.formEntries[index].price = ($scope.formEntries[index].quantity || 0) * price;
-    calculateTotal();
-
-  }
-
-  var calculateTotal = function(){
+  var calculateTotal = function(){ //calculates sum
     if ($scope.formEntries.length > 1){
       $scope.total = _.reduce($scope.formEntries, function(a, b){
         return a + b.price;
@@ -132,16 +55,37 @@ angular.module('product', ['dataFactory'])
     }
   }
 
-  $scope.delete = function(index){
-    $scope.formEntries.splice(index, 1);
-
-  $scope.deploymentOptions.splice(index, 1);
-
-  $scope.modelOptions.splice(index, 1);
-
+  //Updates form on selection
+  $scope.updateDeploy = function(index){
+    $scope.formEntries[index].deployment = "(select)";
+    $scope.formEntries[index].model = "(select)";
+    $scope.formEntries[index].price = null;
+    calculateTotal();    
+  }
+  $scope.updateModel = function(index){
+    $scope.formEntries[index].model = "(select)";
+    $scope.formEntries[index].price = null;
+    calculateTotal();
+  }
+  $scope.updatePrice = function(index){
+    if ("(select)" === $scope.formEntries[index].model){
+      $scope.formEntries[index].price = null;
+      calculateTotal();
+      return;
+    }
+    var product_id = $scope.formEntries[index].product;
+    var deployment_id = $scope.formEntries[index].deployment;
+    var model_id = $scope.formEntries[index].model;
+    var price = $scope.models[product_id][deployment_id][model_id].model_price;
+    var quantity = $scope.formEntries[index].quantity || 0;
+    $scope.formEntries[index].price = quantity * price;
     calculateTotal();
   }
 
+  if ($scope.formEntries.length === 0){ //initialize the form by adding a form entry
+    $scope.addRow(true);
+  }
 
-  
+  calculateTotal();  //initialize the total price
+
 });

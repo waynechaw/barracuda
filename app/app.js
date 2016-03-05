@@ -2,6 +2,7 @@ angular.module('purchase', [
   'ngRoute',
   'product',
   'dataFactory',
+  'formDataFactory',
   'billing'
 ])
 .config(function ($routeProvider, $httpProvider) {

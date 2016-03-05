@@ -1,60 +1,59 @@
 <a href="#/product"><div class="tab selected">Select Products</div></a>
-<a href="#/billing"><div class="tab billTab">Contact & Billing</div></a>
+<a href="#/billing" ng-class="{disabled: !formValid()}"><div class="tab billTab">Contact & Billing</div></a>
 
 <hr>
 
-<div class="selection">
-  <table>
+<table>
+  <tr ng-repeat="row in formEntries">
+    <td class="numberCol">
+      <div class="number" > {{$index + 1}} </div>
+    </td>
 
-    <tr ng-repeat="row in formEntries">
-      <td>
-        <div class="number"> {{$index + 1}} </div>
-      </td>
+    <td class="productCol">
+      <h2>Select Your Product</h2>
+      <label for="product">Product</label>
+      <select name="product" id="product" ng-change="updateDeploy($index)" ng-model="row.product">
+        <option>(select)</option> 
+        <option ng-repeat="(key, product) in productNames" value = {{key}} >
+         {{product}}
+        </option>
+      </select>
 
-      <td class="product">
-        <h2>Select Your Product</h2>
-        <label for="product">Product</label>
-        <select name="product" id="product" ng-change="updateDeploy($index)" ng-model="formEntries[$index].product">
-          <option>(select)</option> 
-          <option ng-repeat="product in products" value = {{product.product_id}} >
-           {{product.product_name}}
-          </option>
-        </select>
+      <label for="deployment" ng-class="{'disabled': !optionSelected(row.product)}">Deployment Option</label>
+      <select name="deployment" id="deployment" ng-change="updateModel($index)" ng-model="row.deployment" ng-disabled="!optionSelected(row.product)">
+        <option>(select)</option> 
+        <option ng-repeat="(key, product) in models[row.product]" value = {{key}} >
+         {{deployMethods[key]}}
+        </option>
+      </select>
 
-        <label for="deployment" ng-class="{'disabled': formEntries[$index].product == '(select)'}">Deployment Option</label>
-        <select name="deployment" id="deployment" ng-change="updateModel($index)" ng-model="formEntries[$index].deployment" ng-disabled="formEntries[$index].product == '(select)'">
-          <option>(select)</option> 
-          <option ng-repeat="option in deploymentOptions[$index]" value = {{option.deployment_id}} >
-           {{option.deployment_name}}
-          </option>
-        </select>
+      <label for="model" ng-class="{'disabled': !optionSelected(row.deployment)}">Model</label>
+      <select name="model" id="model" ng-model="row.model" ng-change="updatePrice($index)" ng-disabled="!optionSelected(row.deployment)">
+        <option>(select)</option>
+        <option ng-repeat="(key, model) in models[row.product][row.deployment]" value = {{key}} >
+         {{model.model_name}}
+        </option> 
+      </select>
+    </td>
 
-        <label for="model" ng-class="{'disabled': formEntries[$index].deployment == '(select)'}">Model</label>
-        <select name="model" id="model" ng-model="formEntries[$index].model" ng-change="updatePrice($index)" ng-disabled="formEntries[$index].deployment == '(select)'">
-          <option>(select)</option>
-          <option ng-repeat="option in modelOptions[$index]" value = {{option.model_id}} >
-           {{option.model_name}}
-          </option> 
-        </select>
-      </td>
-      <td class="quantity">
-        <h2>Quantity</h2>
-        <input type="number" min="1" ng-model="row.quantity" ng-change="updatePrice($index)">
-      </td>
-      <td class="price">
-        <h2>Price</h2>
-        {{formEntries[$index].price | currency}}
-      </td>
-      <td class="price">
-        <button class="delete" ng-if="formEntries.length > 1" ng-click="delete($index)">Delete</button>
-      </td>
-    </tr>
+    <td class="quantityCol">
+      <h2>Quantity</h2>
+      <input type="number" min="1" ng-model="row.quantity" ng-change="updatePrice($index)">
+    </td>
 
+    <td class="priceCol">
+      <h2>Price</h2>
+      {{row.price | currency}}
+    </td>
 
-  </table>
+    <td>
+      <button class="delete" ng-if="formEntries.length > 1" ng-click="delete($index)">Delete</button>
+    </td>
+  </tr>
+</table>
 
 <a href="javascript:void(0);">
-  <div class="add" ng-click="addRow()">
+  <div ng-click="addRow()">
     <div class="plus">+</div>Add Another Product
   </div>
 </a>
@@ -63,7 +62,5 @@
 
 <div class="total">
   <p class="amount">Order Total:  {{total | currency}}</p>
-  <a href="#/billing"><button class="next" ng-click="updatePage('billing')">Next Step: Contact & Billing -> </button></a>
-</div>
-
+  <a href="#/billing" ng-class="{disabled: !formValid()}"><button class="next">Next Step: Contact & Billing -> </button></a>
 </div>

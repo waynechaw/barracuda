@@ -1,3 +1,4 @@
+/* navigation bar */
 
 header{
 	background: linear-gradient(#5F5F5F, black);
@@ -12,6 +13,11 @@ nav{
 	min-width: 1000px;
 }
 
+ul{
+  margin:0;
+  position:relative;
+}
+
 li{
 	display: block;
 	float:right;
@@ -20,12 +26,7 @@ li{
 }
 
 .focus{
-	color:white;
-}
-
-ul{
-	margin:0;
-	position:relative;
+  color:white;
 }
 
 .logo{
@@ -37,17 +38,22 @@ ul{
   background: url('../assets/logo.png') no-repeat;
 }
 
-.clear { clear: both }
+/* form container*/
 
 .container{
 	margin: 30px auto;
 	width: 50%;
+  min-width: 700px;
 }
+
+/* header */
 
 h1{
 	color: #4098d7;
 	font-weight: 100;
 }
+
+/* tabs */
 
 .tab{
   margin: 35px 0;
@@ -69,17 +75,15 @@ h1{
   left: -10px;
 }
 
-hr{
-  border-top: 1px solid #8c8b8b;
-}
+/* form informaion */
 
 h2{
   font-size: .9em;
   margin-top: 5px;
 }
 
-.row{
-  display: inline-block;
+label{
+  font-size: .7em;
 }
 
 .number{
@@ -90,51 +94,44 @@ h2{
   background-color:#ADADAD;
   color:white;
   text-align: center;
-   display: inline-block;
+  display: inline-block;
 }
 
-tr:first-child td {
-    padding-top: 0px;
+.total{
+  padding:20px;
+  text-align: right;
 }
 
-td{
-  padding-right: 1.2em;
-  vertical-align: top;
-  padding-top: 10px;
-  padding-bottom: 20px;
+.amount{
+  padding-bottom: 30px;
+  font-weight: 900;
 }
 
-tr{
-  border-bottom: 1px dashed gray;
-}
-
-.selection{
-  padding: 15px 5px;
-}
-
-label{
-  font-size: .7em;
-}
+/* form input control */
 
 select{
   display: block;
   width: 80%;
 }
 
-.product{
-  width: 60%;
-}
-
-.price{
-  width: 25%;
+input[type='number'] {
+  width:30%;
   text-align: center;
 }
 
-.quantity{
-  width: 20%;
-    text-align: center;
+/* disabled */
+
+select[disabled] {
+  color: #CCC;
 }
-  
+
+.disabled{
+  pointer-events: none;
+  color: #CCC;
+}
+
+/* buttons */
+
 .delete{
   margin-top: 2.3em;
   border: none;
@@ -150,22 +147,8 @@ select{
   width: 20px;
   height:20px;
   text-align: center;
-  margin: 0px 10px;
-}
-
-.add{
+  margin: 15px 10px;
   color: #4098d7;
-  margin:15px 0;
-}
-
-.total{
-  padding:20px;
-  text-align: right;
-}
-
-.amount{
-  padding-bottom: 30px;
-  font-weight: 900;
 }
 
 .next{
@@ -176,6 +159,38 @@ select{
   color:white;
 }
 
+/* form table */
+
+table{
+  table-layout: fixed;
+  width: 100%;
+}
+
+td{
+  vertical-align: top;
+  padding: 10px 10px 20px 0px;
+}
+
+tr{
+  border-bottom: 1px dashed gray;
+}
+
+.numberCol{
+  width: 7%;
+}
+
+.productCol{
+  width: 50%;
+  text-align: left;
+}
+
+.quantityCol, .priceCol{
+  width: 15%;
+  text-align: center;
+}
+
+/* links */
+
 a{
   text-decoration: none;
 }
@@ -184,19 +199,14 @@ a:visited, a:link{
   color:black;
 }
 
-input[type='number'] {
-  width:35px;
-  text-align: center;
-}
+/* miscellaneous */
 
-select[disabled] {
-  color: #CCC;
-}
-
-.disabled{
-  color: #CCC;
-}
+.clear { clear: both }
 
 html {
   overflow-y: scroll;
+}
+
+hr{
+  border-top: 1px solid #8c8b8b;
 }
