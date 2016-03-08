@@ -1,0 +1,177 @@
+/* form table */
+
+
+.productSelect tr{
+  border-bottom: 1px dashed gray;
+}
+
+.productSelect tr td{
+  vertical-align: top;
+  padding: 10px 10px 20px 0px;
+}
+
+.numberCol{
+  width: 7%;
+}
+
+.productCol{
+  width: 50%;
+  text-align: left;
+}
+
+.quantityCol, .priceCol{
+  width: 15%;
+  text-align: center;
+}
+
+/* form informaion */
+
+h2{
+  font-size: .9em;
+  margin-top: 5px;
+}
+
+label{
+  font-size: .7em;
+}
+
+.number{
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 50%;
+  background-color:#ADADAD;
+  color:white;
+  text-align: center;
+  display: inline-block;
+}
+
+.total{
+  padding:20px;
+  text-align: right;
+}
+
+.amount{
+  padding-bottom: 30px;
+  font-weight: 900;
+}
+
+/* form input control */
+
+.productCol select{
+  display: block;
+  width: 80%;
+}
+
+input[type='number'] {
+  width:35%;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+
+/* buttons */
+
+.delete{
+  margin-top: 2.3em;
+  border: none;
+  padding: 6px 15px;
+  background-color: #AD0000;
+  color:white;
+}
+
+.plus{
+  display:inline-block;
+  border: 1px solid #4098d7;
+  border-radius: 50%;
+  width: 20px;
+  height:20px;
+  text-align: center;
+  margin: 15px 10px;
+  color: #4098d7;
+}
+
+.next{
+  margin-top: 2.3em;
+  border: none;
+  padding: 6px 15px;
+  background-color: #006086;
+  color:white;
+}
+
+
+/* links */
+
+a{
+  text-decoration: none;
+}
+
+a:visited, a:link{
+  color:black;
+}
+
+/* disabled */
+
+select[disabled] {
+  color: #CCC;
+}
+
+.disabled{
+  pointer-events: none;
+  color: #CCC;
+}
+
+/* miscellaneous */
+
+.clear { clear: both }
+
+html {
+  overflow-y: scroll;
+}
+
+hr{
+  border-top: 1px solid #8c8b8b;
+}
+
+/* billing page */
+
+/* billing table */
+
+.billing{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.billing fieldset{
+  display:inline-block;
+  width:45%;
+  border: none;
+}
+
+fieldset table tr td{
+  padding:  5px 15px 5px 0px;
+  font-size: .8em;
+}
+
+select.wide{
+  width: 100%;
+}
+
+select.year{
+  width:70%;
+}
+
+/* summary table */
+
+.summary table{
+  width: 70%;
+}
+
+.summary table tr td  {
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+thead, tfoot{
+  font-weight: 600;
+}

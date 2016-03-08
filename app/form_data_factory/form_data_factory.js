@@ -1,6 +1,6 @@
 angular.module('formDataFactory', [])
 
-.factory('formData', function ($http) {
+.factory('formData', function () {
 
   var formData = [];
 

@@ -5,7 +5,7 @@ angular.module('purchase', [
   'formDataFactory',
   'billing'
 ])
-.config(function ($routeProvider, $httpProvider) {
+.config(function ($routeProvider) {
   $routeProvider
     .when('/product', {
       templateUrl: 'app/product/product.html',
@@ -18,19 +18,4 @@ angular.module('purchase', [
     .otherwise({
       redirectTo: '/product'
     });
-})
-
-.controller('homeController', function ($scope, $controller, productData) {
-
-  $scope.current = productData.getPage();
-
-  $scope.updatePage = function(page){
-
-    productData.updatePage(page)
-
-    $scope.current = productData.getPage();
-  }
-
-  angular.extend(this, $controller('productController', {$scope: $scope}));
-
 });

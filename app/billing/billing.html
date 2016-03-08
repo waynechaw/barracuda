@@ -3,4 +3,126 @@
 
 <hr>
 
-<div>contact and billing view</div>
+ <form class="billing">
+  <fieldset>
+    <h2>Contact Information</h2>
+    <table>
+      <tr>
+        <td>First Name: </td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td> 
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>Company Name: </td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>Email: </td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>Phone:</td> 
+        <td><input type="text"/></td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <h2>Billing Information</h2>
+    <table>
+      <tr>
+        <td>Cardholder's Name: </td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>Credit Card Number:</td> 
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>Expiration Date: </td>
+        <td>
+          <select class="year">
+            <option>2016</option> 
+            <option>2017</option> 
+          </select>
+          <select class="month">
+            <option>1</option> 
+          </select>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <hr>
+
+  <fieldset>
+    <h2>Shipping Information</h2>
+    <table>
+      <tr>
+        <td>Country: </td>
+        <td>
+          <select class="wide">
+            <option>United States</option> 
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Street Address:</td> 
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>City:</td> 
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>State: </td>
+        <td>
+          <select class="wide">
+            <option>Select a State</option> 
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Zip Code:</td> 
+        <td><input type="text"></td>
+      </tr>
+
+    </table>
+  </fieldset>
+
+  <fieldset class="summary">
+    <h2>Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <td>Item </td>
+          <td>Price </td>
+        </tr>
+      </thead>
+      <tr>
+        <td>Products ({{productCount}})</td> 
+        <td>{{total | currency}}</td>
+      </tr>
+      <tr>
+        <td>Tax </td>
+        <td>{{tax | currency}}</td>
+      </tr>
+      <tfoot>
+        <tr>
+          <td>Order Total</td> 
+          <td>{{total + tax| currency}}</td>
+        </tr>
+      </tfoot>
+
+    </table>
+  </fieldset>
+
+  <hr>
+
+  <button class="next">Submit </button>
+  
+</form> 
+

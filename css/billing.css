@@ -1,0 +1,40 @@
+/* billing table */
+
+.billing{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.billing fieldset{
+  display:inline-block;
+  width:45%;
+  border: none;
+}
+
+fieldset table tr td{
+  padding:  5px 15px 5px 0px;
+  font-size: .8em;
+}
+
+select.wide{
+  width: 100%;
+}
+
+select.year{
+  width:70%;
+}
+
+/* summary table */
+
+.summary table{
+  width: 70%;
+}
+
+.summary table tr td  {
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+thead, tfoot{
+  font-weight: 600;
+}

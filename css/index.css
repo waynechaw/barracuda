@@ -1,0 +1,76 @@
+/* navigation bar */
+
+header{
+	background: linear-gradient(#5F5F5F, black);
+	padding: 8px;
+}
+
+nav{
+  width: 70%;
+	margin: 0 auto;
+	height: 20px;
+	padding-top:30px;
+	min-width: 1000px;
+}
+
+ul{
+  margin:0;
+  position:relative;
+}
+
+li{
+	display: block;
+	float:right;
+	color:#808080;
+	margin-left: 15px;
+}
+
+.focus{
+  color:white;
+}
+
+.logo{
+	float:left;
+	width: 185px;
+	height: 45px;
+	position: absolute;
+	top: -25px;
+  background: url('../assets/logo.png') no-repeat;
+}
+
+/* form container*/
+
+.container{
+	margin: 30px auto;
+	width: 50%;
+  min-width: 700px;
+}
+
+/* header */
+
+h1{
+	color: #4098d7;
+	font-weight: 100;
+}
+
+/* tabs */
+
+.tab{
+  margin: 35px 0;
+  width: 195px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  font-size: .95em;
+  display: inline-block;
+  background: url('../assets/tab2.png') no-repeat;
+}
+
+.selected{
+  background: url('../assets/tab1.png') no-repeat;
+}
+
+.billTab{
+  position:relative;
+  left: -10px;
+}
